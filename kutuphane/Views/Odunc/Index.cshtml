@@ -1,0 +1,70 @@
+@model IEnumerable<kutuphane.Models.Odunc>
+
+@{
+    ViewData["Title"] = "Ödünç İşlemleri";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Ödünç İşlemleri</h2>
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Yeni Ödünç Ver
+        </a>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.oduncNo)</th>
+                    <th>Kitap</th>
+                    <th>Üye</th>
+                    <th>@Html.DisplayNameFor(model => model.vermeTarihi)</th>
+                    <th>@Html.DisplayNameFor(model => model.vermeSuresi)</th>
+                    <th>Geri Getirme Tarihi</th>
+                    <th>@Html.DisplayNameFor(model => model.geldiMi)</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="@(item.geldiMi ? "" : (item.GeriGetirmeTarihi < DateTime.Now ? "table-danger" : ""))">
+                        <td>@Html.DisplayFor(modelItem => item.oduncNo)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Kitap.kitapAdi)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Uye.AdSoyad)</td>
+                        <td>@item.vermeTarihi.ToString("dd.MM.yyyy")</td>
+                        <td>@Html.DisplayFor(modelItem => item.vermeSuresi) gün</td>
+                        <td>@item.GeriGetirmeTarihi.ToString("dd.MM.yyyy")</td>
+                        <td>
+                            @if (item.geldiMi)
+                            {
+                                <span class="badge bg-success">Geldi</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning">Gelmedi</span>
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.oduncNo" class="btn btn-sm btn-warning">Düzenle</a>
+                            @if (!item.geldiMi)
+                            {
+                                <a asp-action="GeriAl" asp-route-id="@item.oduncNo" class="btn btn-sm btn-success">Geri Al</a>
+                            }
+                            <a asp-action="Delete" asp-route-id="@item.oduncNo" class="btn btn-sm btn-danger">Sil</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

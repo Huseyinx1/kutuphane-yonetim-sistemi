@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <div class="mb-4" style="font-size: 4rem; line-height: 1;">📚</div>
+        <h1 class="display-4 mb-4 fw-bold">Kütüphane Yönetim Sistemi</h1>
+        <p class="lead fs-4" style="color: rgba(255, 255, 255, 0.9); text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);">
+            Kitaplarınızı, üyelerinizi ve ödünç işlemlerinizi kolayca yönetin.
+        </p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-3">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <div style="width: 60px; height: 60px; margin: 0 auto; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: bold;">📚</div>
+                    </div>
+                    <h5 class="card-title fw-bold">Kitap Türleri</h5>
+                    <p class="card-text text-muted">Kitap türlerini ekleyin ve yönetin.</p>
+                    <a asp-controller="Tur" asp-action="Index" class="btn btn-primary mt-2">Türler</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <div style="width: 60px; height: 60px; margin: 0 auto; background: linear-gradient(135deg, #f093fb 0%, #4facfe 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: bold;">📖</div>
+                    </div>
+                    <h5 class="card-title fw-bold">Kitaplar</h5>
+                    <p class="card-text text-muted">Kitap ekleyin ve türlerini seçin.</p>
+                    <a asp-controller="Kitap" asp-action="Index" class="btn btn-primary mt-2">Kitaplar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <div style="width: 60px; height: 60px; margin: 0 auto; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: bold;">👥</div>
+                    </div>
+                    <h5 class="card-title fw-bold">Üyeler</h5>
+                    <p class="card-text text-muted">Üye ekleyin ve bilgilerini güncelleyin.</p>
+                    <a asp-controller="Uye" asp-action="Index" class="btn btn-primary mt-2">Üyeler</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <div style="width: 60px; height: 60px; margin: 0 auto; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: bold;">🔄</div>
+                    </div>
+                    <h5 class="card-title fw-bold">Ödünç İşlemleri</h5>
+                    <p class="card-text text-muted">Kitap ödünç verin ve takip edin.</p>
+                    <a asp-controller="Odunc" asp-action="Index" class="btn btn-primary mt-2">Ödünçler</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

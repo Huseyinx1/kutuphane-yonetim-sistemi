@@ -1,0 +1,65 @@
+@model kutuphane.Models.Odunc
+
+@{
+    ViewData["Title"] = "Ödünç Sil";
+}
+
+<div class="container mt-4">
+    <h2>Ödünç Sil</h2>
+    <hr />
+
+    <h3>Bu ödünç kaydını silmek istediğinizden emin misiniz?</h3>
+    <div>
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.oduncNo)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.oduncNo)
+            </dd>
+            <dt class="col-sm-2">
+                Kitap
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Kitap.kitapAdi)
+            </dd>
+            <dt class="col-sm-2">
+                Üye
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Uye.AdSoyad)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.vermeTarihi)
+            </dt>
+            <dd class="col-sm-10">
+                @Model.vermeTarihi.ToString("dd.MM.yyyy")
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.vermeSuresi)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.vermeSuresi) gün
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.geldiMi)
+            </dt>
+            <dd class="col-sm-10">
+                @if (Model.geldiMi)
+                {
+                    <span class="badge bg-success">Geldi</span>
+                }
+                else
+                {
+                    <span class="badge bg-warning">Gelmedi</span>
+                }
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="oduncNo" />
+            <button type="submit" class="btn btn-danger">Sil</button>
+            <a asp-action="Index" class="btn btn-secondary">İptal</a>
+        </form>
+    </div>
+</div>

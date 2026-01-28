@@ -1,0 +1,80 @@
+@model kutuphane.Models.Kitap
+@{
+    ViewData["Title"] = "Kitap Düzenle";
+    var turler = ViewBag.Turler as SelectList;
+    var selectedTurler = ViewBag.SelectedTurler as int[] ?? Array.Empty<int>();
+}
+
+<div class="container mt-4">
+    <h2>Kitap Düzenle</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-8">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="kitapNo" />
+                
+                <div class="mb-3">
+                    <label asp-for="kitapAdi" class="form-label"></label>
+                    <input asp-for="kitapAdi" class="form-control" />
+                    <span asp-validation-for="kitapAdi" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ISBNNo" class="form-label"></label>
+                    <input asp-for="ISBNNo" class="form-control" />
+                    <span asp-validation-for="ISBNNo" class="text-danger"></span>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label asp-for="sayfaSayisi" class="form-label"></label>
+                            <input asp-for="sayfaSayisi" class="form-control" type="number" />
+                            <span asp-validation-for="sayfaSayisi" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="kitapOzeti" class="form-label"></label>
+                    <textarea asp-for="kitapOzeti" class="form-control" rows="5"></textarea>
+                    <span asp-validation-for="kitapOzeti" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Kitap Türleri</label>
+                    <div class="border p-3 rounded">
+                        @if (turler != null && turler.Any())
+                        {
+                            @foreach (var tur in turler)
+                            {
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="selectedTurler" value="@tur.Value" id="tur_@tur.Value" 
+                                           @(selectedTurler.Contains(int.Parse(tur.Value)) ? "checked" : "") />
+                                    <label class="form-check-label" for="tur_@tur.Value">
+                                        @tur.Text
+                                    </label>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <p class="text-muted">Henüz tür eklenmemiş. Önce <a asp-controller="Tur" asp-action="Create">tür ekleyin</a>.</p>
+                        }
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Güncelle</button>
+                    <a asp-action="Index" class="btn btn-secondary">İptal</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

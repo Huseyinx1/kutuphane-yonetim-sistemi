@@ -1,0 +1,52 @@
+@model kutuphane.Models.Uye
+
+@{
+    ViewData["Title"] = "Yeni Üye Ekle";
+}
+
+<div class="container mt-4">
+    <h2>Yeni Üye Ekle</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                
+                <div class="mb-3">
+                    <label asp-for="adi" class="form-label"></label>
+                    <input asp-for="adi" class="form-control" />
+                    <span asp-validation-for="adi" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="soyadi" class="form-label"></label>
+                    <input asp-for="soyadi" class="form-control" />
+                    <span asp-validation-for="soyadi" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="adresi" class="form-label"></label>
+                    <textarea asp-for="adresi" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="adresi" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input asp-for="aktifMi" class="form-check-input" type="checkbox" checked />
+                        <label asp-for="aktifMi" class="form-check-label"></label>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                    <a asp-action="Index" class="btn btn-secondary">İptal</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

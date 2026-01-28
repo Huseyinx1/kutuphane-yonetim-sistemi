@@ -1,0 +1,33 @@
+@model kutuphane.Models.Tur
+
+@{
+    ViewData["Title"] = "Yeni Tür Ekle";
+}
+
+<div class="container mt-4">
+    <h2>Yeni Tür Ekle</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                
+                <div class="mb-3">
+                    <label asp-for="turAciklama" class="form-label"></label>
+                    <input asp-for="turAciklama" class="form-control" />
+                    <span asp-validation-for="turAciklama" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                    <a asp-action="Index" class="btn btn-secondary">İptal</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

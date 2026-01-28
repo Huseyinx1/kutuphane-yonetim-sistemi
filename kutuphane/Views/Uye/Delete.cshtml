@@ -1,0 +1,59 @@
+@model kutuphane.Models.Uye
+
+@{
+    ViewData["Title"] = "Üye Sil";
+}
+
+<div class="container mt-4">
+    <h2>Üye Sil</h2>
+    <hr />
+
+    <h3>Bu üyeyi silmek istediğinizden emin misiniz?</h3>
+    <div>
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.uyeNo)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.uyeNo)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.adi)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.adi)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.soyadi)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.soyadi)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.adresi)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.adresi)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.aktifMi)
+            </dt>
+            <dd class="col-sm-10">
+                @if (Model.aktifMi)
+                {
+                    <span class="badge bg-success">Aktif</span>
+                }
+                else
+                {
+                    <span class="badge bg-secondary">Pasif</span>
+                }
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="uyeNo" />
+            <button type="submit" class="btn btn-danger">Sil</button>
+            <a asp-action="Index" class="btn btn-secondary">İptal</a>
+        </form>
+    </div>
+</div>

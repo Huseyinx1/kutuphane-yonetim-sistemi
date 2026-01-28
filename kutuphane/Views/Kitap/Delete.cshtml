@@ -1,0 +1,59 @@
+@model kutuphane.Models.Kitap
+
+@{
+    ViewData["Title"] = "Kitap Sil";
+}
+
+<div class="container mt-4">
+    <h2>Kitap Sil</h2>
+    <hr />
+
+    <h3>Bu kitabı silmek istediğinizden emin misiniz?</h3>
+    <div>
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.kitapNo)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.kitapNo)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.kitapAdi)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.kitapAdi)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ISBNNo)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ISBNNo)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.sayfaSayisi)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.sayfaSayisi)
+            </dd>
+            <dt class="col-sm-2">
+                Türler
+            </dt>
+            <dd class="col-sm-10">
+                @if (Model.KitapTurler != null && Model.KitapTurler.Any())
+                {
+                    @string.Join(", ", Model.KitapTurler.Select(kt => kt.Tur.turAciklama))
+                }
+                else
+                {
+                    <span class="text-muted">Tür yok</span>
+                }
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="kitapNo" />
+            <button type="submit" class="btn btn-danger">Sil</button>
+            <a asp-action="Index" class="btn btn-secondary">İptal</a>
+        </form>
+    </div>
+</div>

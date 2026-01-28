@@ -1,0 +1,62 @@
+@model kutuphane.Models.Odunc
+@{
+    ViewData["Title"] = "Yeni Ödünç Ver";
+    var kitaplar = ViewBag.Kitaplar as SelectList;
+    var uyeler = ViewBag.Uyeler as SelectList;
+}
+
+<div class="container mt-4">
+    <h2>Yeni Ödünç Ver</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-8">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                
+                <div class="mb-3">
+                    <label asp-for="kitapNo" class="form-label">Kitap</label>
+                    <select asp-for="kitapNo" class="form-select" asp-items="kitaplar">
+                        <option value="">-- Kitap Seçin --</option>
+                    </select>
+                    <span asp-validation-for="kitapNo" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="uyeNo" class="form-label">Üye</label>
+                    <select asp-for="uyeNo" class="form-select" asp-items="uyeler">
+                        <option value="">-- Üye Seçin --</option>
+                    </select>
+                    <span asp-validation-for="uyeNo" class="text-danger"></span>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label asp-for="vermeTarihi" class="form-label"></label>
+                            <input asp-for="vermeTarihi" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                            <span asp-validation-for="vermeTarihi" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label asp-for="vermeSuresi" class="form-label"></label>
+                            <input asp-for="vermeSuresi" class="form-control" type="number" value="14" min="1" />
+                            <span asp-validation-for="vermeSuresi" class="text-danger"></span>
+                            <small class="form-text text-muted">Gün cinsinden</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                    <a asp-action="Index" class="btn btn-secondary">İptal</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
